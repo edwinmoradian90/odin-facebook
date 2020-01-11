@@ -1,0 +1,30 @@
+<div>
+  <h1>
+    <%= @user.first_name.capitalize %>
+    <%= @user.last_name.capitalize %>
+  </h1>
+  <% if current_user.is_friend?(@user) %>
+    <%= link_to 'Unfriend', friend_path(@user.id), method: :delete,
+                class: 'btn btn-danger',
+                data: { confirm: 'Are you sure?'}%>
+  <% elsif current_user.pending?(@user) %>
+    <%= link_to 'Pending', friend_request_path(@user.id), method: :delete,
+                class: 'btn btn-danger' %>
+  <% else %>
+    <%= form_for current_user.friend_requests.build(friend: @user) do |f| %>
+      <%= f.hidden_field :friend_id  %>
+      <button class='btn btn-info'>Add Friend</button>
+    <% end %>
+  <% end %>
+</div>
+<aside>
+  <h3>Posts (<%= @user.posts.count %>)</h3>
+  <% @posts.each do |post| %>
+    <li id="<%= post.id %>">
+      <h4><%= post.content %></h4>
+      Posted <%= time_ago_in_words(post.created_at) %> ago.
+      <%= link_to 'View', post_path(post.id) %>
+    </li>
+  <% end %>
+  <%= will_paginate @posts %>
+</aside>

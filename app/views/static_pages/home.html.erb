@@ -1,0 +1,47 @@
+<div>
+  <!-- Header -->
+  <h1>
+    Hello, <%= current_user.first_name.capitalize %>
+    <%= current_user.last_name.capitalize %>
+  </h1>
+
+  <!-- Posts -->
+  <aside>
+    <h3>Posts</h3>
+    <% if @feed_items.any? %>
+      <% @feed_items.each do |item| %>
+        <li id="<%= item.id %>">
+          <h3>
+            <%= item.author.first_name.capitalize %>
+            <%= item.author.last_name.capitalize %>
+          </h3>
+          <h4><%= item.content %></h4>
+          Posted <%= time_ago_in_words(item.created_at) %> ago.
+
+          <!-- Delete Post -->
+          <% if item.author_id == current_user.id %>
+            <%= link_to 'Delete', post_path(item.id), method: :delete, class: 'text-danger' %>
+          <% end %><br /><br />
+
+          <!-- Like count -->
+          <%= item.likes.count %>
+
+          <!-- Like functionality with partial -->
+          <%= render 'shared/like_button', item: item %>
+
+          <!-- Comment view -->
+          <%= item.comments.count %>
+          <%= link_to '', post_path(item.id), class: 'glyphicon glyphicon-comment' %>
+
+          <!-- Post show page -->
+          <%= link_to 'View', post_path(item.id) %>
+        </li>
+      <% end %>
+    <% else %>
+      <h5>Nothing to see here...</h5>
+    <% end %>
+    <section>
+      <%= render 'shared/post_form' %>
+    </section>
+  </aside>
+</div>

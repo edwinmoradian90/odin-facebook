@@ -1,0 +1,8 @@
+<h1>All friends</h1>
+
+<% @friends.each do |friend| %>
+  <li id='friend.id'>
+    <%= link_to "#{friend.first_name.capitalize} #{friend.last_name.capitalize}", user_path(friend.id) %>
+  </li>
+<% end %>
+<%= will_paginate @friends %>
