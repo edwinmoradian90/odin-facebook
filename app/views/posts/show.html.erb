@@ -1,12 +1,21 @@
 <div>
-    <h2>
-      <%= @post.author.first_name.capitalize %>
-      <%= @post.author.last_name.capitalize %>
-    </h2>
-    <h4><%= @post.content %></h4>
+  <!-- Author Information -->
+  <h2>
+    <%= @post.author.first_name.capitalize %>
+    <%= @post.author.last_name.capitalize %>
+  </h2>
+
+  <!-- Post Content -->
+  <h4><%= @post.content %></h4>
+
+  <!-- Create comment -->
   <h3>Post a comment</h3>
   <%= render 'shared/comment_form', collection: @post.comments %>
+
+  <!-- Comment count -->
   <h3>Comments(<%= @comments.count %>)</h3>
+
+  <!-- Comment display -->
   <% @comments.desc.each do |comment| %>
     <li class="<%= comment.id %>">
       <h3>

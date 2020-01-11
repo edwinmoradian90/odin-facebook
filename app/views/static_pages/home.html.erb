@@ -1,5 +1,5 @@
 <div>
-  <!-- Header -->
+  <!-- User Name -->
   <h1>
     Hello, <%= current_user.first_name.capitalize %>
     <%= current_user.last_name.capitalize %>
@@ -37,9 +37,13 @@
           <%= link_to 'View', post_path(item.id) %>
         </li>
       <% end %>
+
+      <!-- If no posts -->
     <% else %>
       <h5>Nothing to see here...</h5>
     <% end %>
+
+    <!-- Post form -->
     <section>
       <%= render 'shared/post_form' %>
     </section>
