@@ -15,8 +15,6 @@ gem 'will_paginate', '3.1.7'
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'sassc-rails', '>= 2.1.0'
 gem 'faker', '~> 1.6', '>= 1.6.6'
-gem 'omniauth-facebook', '~> 4.0'
-gem 'activerecord-session_store', '~> 1.0'
 gem 'devise'
 gem 'jquery-rails'
 gem 'lol_dba'
@@ -25,8 +23,6 @@ gem 'lol_dba'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  # Use Dotenv for environment variables
-  gem 'dotenv', '~> 2.2.1'
 end
 
 group :development do
