@@ -20,7 +20,7 @@ development:
   database: demo_test_development
   pool: 5
   username: edwin
-  password:
+  password: <%= ENV['YOUR_DATABASE_PASSWORD'] %>
   timeout: 5000
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -50,5 +50,5 @@ test:
   database: demo_test_test
   pool: 5
   username: edwin
-  password:
+  password: <%= ENV['YOUR_DATABASE_PASSWORD'] %>
   timeout: 5000
