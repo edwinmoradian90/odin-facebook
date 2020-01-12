@@ -17,7 +17,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: demo_test_development
+  database: fakebook_development
   pool: 5
   username: edwin
   password: <%= ENV['YOUR_DATABASE_PASSWORD'] %>
@@ -47,7 +47,7 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: demo_test_test
+  database: fakebook_test
   pool: 5
   username: edwin
   password: <%= ENV['YOUR_DATABASE_PASSWORD'] %>
