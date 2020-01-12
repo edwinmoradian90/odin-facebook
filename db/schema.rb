@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_10_074215) do
+ActiveRecord::Schema.define(version: 2020_01_12_012123) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "comments", force: :cascade do |t|
-    t.integer "author_id", null: false
-    t.integer "post_id", null: false
+    t.bigint "author_id", null: false
+    t.bigint "post_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "content"
@@ -26,8 +26,8 @@ ActiveRecord::Schema.define(version: 2020_01_10_074215) do
   end
 
   create_table "friend_requests", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "friend_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "friend_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["friend_id"], name: "index_friend_requests_on_friend_id"
@@ -35,8 +35,8 @@ ActiveRecord::Schema.define(version: 2020_01_10_074215) do
   end
 
   create_table "friendships", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "friend_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "friend_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["friend_id"], name: "index_friendships_on_friend_id"
@@ -44,8 +44,8 @@ ActiveRecord::Schema.define(version: 2020_01_10_074215) do
   end
 
   create_table "likes", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "post_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "post_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["post_id"], name: "index_likes_on_post_id"
@@ -53,11 +53,20 @@ ActiveRecord::Schema.define(version: 2020_01_10_074215) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.integer "author_id", null: false
+    t.bigint "author_id", null: false
     t.string "content", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["author_id"], name: "index_posts_on_author_id"
+  end
+
+  create_table "sessions", force: :cascade do |t|
+    t.string "session_id", null: false
+    t.text "data"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["session_id"], name: "index_sessions_on_session_id", unique: true
+    t.index ["updated_at"], name: "index_sessions_on_updated_at"
   end
 
   create_table "users", force: :cascade do |t|
@@ -70,6 +79,8 @@ ActiveRecord::Schema.define(version: 2020_01_10_074215) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "first_name"
     t.string "last_name"
+    t.string "provider", limit: 50, default: "", null: false
+    t.string "uid", limit: 500, default: "", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
