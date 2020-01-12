@@ -1,8 +1,9 @@
 <div>
   <!-- User Name -->
   <h1>
-    Hello, <%= current_user.first_name.capitalize %>
-    <%= current_user.last_name.capitalize %>
+    <%= gravatar_for @user %>
+    <%= current_user.first_name.capitalize %>
+    <%= current_user.last_name.capitalize %><br/>
   </h1>
 
   <!-- Posts -->

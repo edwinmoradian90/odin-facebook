@@ -2,8 +2,9 @@
 
   <!-- User name -->
   <h1>
+    <%= gravatar_for @user %>
     <%= @user.first_name.capitalize %>
-    <%= @user.last_name.capitalize %>
+    <%= @user.last_name.capitalize %><br/>
   </h1>
 
   <!-- Send/cancel friend request -->
