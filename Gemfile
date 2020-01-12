@@ -17,7 +17,6 @@ gem 'sassc-rails', '>= 2.1.0'
 gem 'faker', '~> 1.6', '>= 1.6.6'
 gem 'devise'
 gem 'jquery-rails'
-gem 'lol_dba'
 
 
 group :development, :test do
@@ -32,6 +31,8 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  # DBA to check for index errors
+  gem 'lol_dba'
 end
 
 group :test do
