@@ -1,0 +1,8 @@
+<% if current_user.liked?(item.id) %>
+  <%= link_to '', like_path(item.id), method: :delete,
+              class: 'glyphicon glyphicon-thumbs-up primary' %>
+<% else %>
+  <%= link_to '', likes_path(id: item.id), method: :post,
+              class:'glyphicon glyphicon-thumbs-up',
+              style: 'color:grey' %>
+<% end %>
